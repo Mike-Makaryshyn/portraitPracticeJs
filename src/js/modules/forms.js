@@ -45,7 +45,11 @@ const forms = () => {
          let dots;
          const arr = item.files[0].name.split('.');
 
-         arr[0].length > 6 ? dots = '...' : dots = '.';
+         if (arr[0].length > 6) {
+            dots = '...';
+         } else {
+            dots = '.';
+         }
          let name = arr[0].substring(0,6) + dots + arr[1];
 
          item.previousElementSibling.textContent = name;
@@ -76,7 +80,12 @@ const forms = () => {
 
          const formData = new FormData(item);
          let api;
-         item.closest('.popup-design') || item.classList.contains('calc-form') ? api = path.designer : api = path.question;
+         if (item.closest('.popup-design') || item.classList.contains('calc-form')) {
+            api = path.designer;
+         } else {
+            api = path.question;
+         }
+
          console.log(api);
 
          postData(api,formData)
