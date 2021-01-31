@@ -1,6 +1,8 @@
 const modals = () => {
 
-   let btnPressed = false;
+   let btnPressed = false,
+      modalTimeoutId;
+
 
    function bindModal(triggerSelector,modalSelector,closeSelector,destroy = false) {
 
@@ -9,6 +11,18 @@ const modals = () => {
          close = document.querySelector(closeSelector),
          windows = document.querySelectorAll('[data-modal]'),
          scroll = calcScroll();
+
+      function openModal() {
+         modal.style.display = "block";
+         document.body.style.overflow = "hidden";
+         document.body.style.marginRight = `${scroll}px`;
+         clearInterval(modalTimeoutId);
+      }
+      function closeModal() {
+         modal.style.display = "none";
+         document.body.style.overflow = "";
+         document.body.style.marginRight = `0px`;
+      }
 
       trigger.forEach(item => {
          item.addEventListener('click',(e) => {
@@ -27,9 +41,7 @@ const modals = () => {
                item.classList.add('animated','fadeIn');
             });
 
-            modal.style.display = "block";
-            document.body.style.overflow = "hidden";
-            document.body.style.marginRight = `${scroll}px`;
+            openModal();
          });
       });
 
@@ -38,9 +50,7 @@ const modals = () => {
             item.style.display = 'none';
          });
 
-         modal.style.display = "none";
-         document.body.style.overflow = "";
-         document.body.style.marginRight = `0px`;
+         closeModal();
       });
 
       modal.addEventListener('click',(e) => {
@@ -49,15 +59,13 @@ const modals = () => {
                item.style.display = 'none';
             });
 
-            modal.style.display = "none";
-            document.body.style.overflow = "";
-            document.body.style.marginRight = `0px`;
+            closeModal();
          }
       });
    }
 
    function showModalByTime(selector,time) {
-      setTimeout(function () {
+      modalTimeoutId = setTimeout(function () {
          let display;
 
          document.querySelectorAll('[data-modal]').forEach(item => {
@@ -105,7 +113,7 @@ const modals = () => {
    bindModal('.fixed-gift','.popup-gift','.popup-gift .popup-close',true);
 
    openByScroll('.fixed-gift');
-   showModalByTime('.popup-consultation',1200000);
+   showModalByTime('.popup-consultation',60000);
 };
 
 export default modals;
