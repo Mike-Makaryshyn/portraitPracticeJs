@@ -1,4 +1,4 @@
-// import checkNumInputs from './checkNumInputs';
+
 import { postData } from '../services/requests';
 
 const forms = () => {
@@ -6,7 +6,6 @@ const forms = () => {
       inputs = document.querySelectorAll('input'),
       upload = document.querySelectorAll('[name="upload"]');
 
-   // checkNumInputs('input[name="user_phone"]');
 
    const message = {
       loading: 'Загрузка...',
