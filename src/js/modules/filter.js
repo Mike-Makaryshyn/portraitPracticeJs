@@ -36,13 +36,18 @@ const filter = () => {
       }
    };
 
-   btnAll.addEventListener('click',() => typeFilter(markAll));
-   btnLovers.addEventListener('click',() => typeFilter(markLovers));
-   btnChef.addEventListener('click',() => typeFilter(markChef));
-   btnGuy.addEventListener('click',() => typeFilter(markGuy));
-   btnGirl.addEventListener('click',() => typeFilter(markGirl));
-   btnGrandmother.addEventListener('click',() => typeFilter());
-   btnGraddad.addEventListener('click',() => typeFilter());
+   function bindActionsToElem(event,elem,mark) {
+      elem.addEventListener(event,() => typeFilter(mark));
+   }
+
+   bindActionsToElem('click',btnAll,markAll);
+   bindActionsToElem('click',btnLovers,markLovers);
+   bindActionsToElem('click',btnChef,markChef);
+   bindActionsToElem('click',btnGuy,markGuy);
+   bindActionsToElem('click',btnGirl,markGirl);
+   bindActionsToElem('click',btnGrandmother);
+   bindActionsToElem('click',btnGraddad);
+
 
    menu.addEventListener('click',(e) => {
       let target = e.target;

@@ -4497,27 +4497,19 @@ var filter = function filter() {
     }
   };
 
-  btnAll.addEventListener('click', function () {
-    return typeFilter(markAll);
-  });
-  btnLovers.addEventListener('click', function () {
-    return typeFilter(markLovers);
-  });
-  btnChef.addEventListener('click', function () {
-    return typeFilter(markChef);
-  });
-  btnGuy.addEventListener('click', function () {
-    return typeFilter(markGuy);
-  });
-  btnGirl.addEventListener('click', function () {
-    return typeFilter(markGirl);
-  });
-  btnGrandmother.addEventListener('click', function () {
-    return typeFilter();
-  });
-  btnGraddad.addEventListener('click', function () {
-    return typeFilter();
-  });
+  function bindActionsToElem(event, elem, mark) {
+    elem.addEventListener(event, function () {
+      return typeFilter(mark);
+    });
+  }
+
+  bindActionsToElem('click', btnAll, markAll);
+  bindActionsToElem('click', btnLovers, markLovers);
+  bindActionsToElem('click', btnChef, markChef);
+  bindActionsToElem('click', btnGuy, markGuy);
+  bindActionsToElem('click', btnGirl, markGirl);
+  bindActionsToElem('click', btnGrandmother);
+  bindActionsToElem('click', btnGraddad);
   menu.addEventListener('click', function (e) {
     var target = e.target;
 
