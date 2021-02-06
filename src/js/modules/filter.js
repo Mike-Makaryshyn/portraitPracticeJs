@@ -38,6 +38,7 @@ const filter = () => {
 
    function bindActionsToElem(event,elem,mark) {
       elem.addEventListener(event,() => typeFilter(mark));
+
    }
 
    bindActionsToElem('click',btnAll,markAll);
