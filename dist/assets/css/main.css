@@ -643,6 +643,8 @@ h4 {
 .portfolio-wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 40px;
 }
 .portfolio-block {
   width: 20%;
